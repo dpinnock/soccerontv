@@ -34,7 +34,7 @@ CSS
 Free data
 =========
 - dump.json is all the game data entries we made while the web app was up, maybe someone can find it useful or interesting.
-- Each game date is stored as an Epoch. You will have to convert each Epoch to a human readable date yourself. 
+- Date values are stored as the number of milliseconds since the Unix epoch (Jan 1, 1970) as a 64-bit integer. You will have to convert each date entry to a human readable date yourself.
 - Please note there are mistakes in some entries, so it's not 100% accurate or reliable.
 
 
