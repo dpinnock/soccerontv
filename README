@@ -2,8 +2,6 @@ RIP Soccer On TV (sotlive.com)
 
 This web app is no longer in production and I am open sourcing the code. Some things are not very pretty but the app worked fine in production for over a year.
 
-dump.json is all the game data entries we made while the web app was up, maybe someone can find it useful or interesting (the dates are stored as epochs, so you will have to do some epoch to normal date conversion to make the dates readable).
-
 Brief technical explanation of technologies used
 ================================================
 This was my first Python web application. This was also my first experience with MongoDB. MongoDB was not the right database engine to use for a web app of this type, since the data is very structured. A traditional RDBMS database would have been a better choice. Still was a cool learning experience and MongoDB didn't actually hinder anything I was doing but it definitely wasn't the best choice. Live and learn...
@@ -32,3 +30,11 @@ JavaScript
 CSS
 ===
 - Bootstrap
+
+Free data
+=========
+- dump.json is all the game data entries we made while the web app was up, maybe someone can find it useful or interesting.
+- Each game date is stored as an Epoch. You will have to convert each Epoch to a human readable date yourself. 
+- Please note there are mistakes in some entries, so it's not 100% accurate or reliable.
+
+
