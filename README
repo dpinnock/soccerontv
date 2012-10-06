@@ -6,11 +6,7 @@ Brief technical explanation of technologies used
 ================================================
 This was my first Python web application. This was also my first experience with MongoDB. MongoDB was not the right database engine to use for a web app of this type, since the data is very structured. A traditional RDBMS database would have been a better choice. Still was a cool learning experience and MongoDB didn't actually hinder anything I was doing but it definitely wasn't the best choice. Live and learn...
 
-The JavaScript code I wrote for this is a bit messy. I just cranked it out and never changed anything after it worked. It works though...
-
-The jinja2 templates also are a bit of a mess, things could have been done differently.
-
-Dependencies:
+The JavaScript code I wrote for this is a bit messy. I just cranked it out and never changed anything after it worked. The jinja2 templates also are a bit of a mess, things could have been more structured and done differently.
 
 Server / Database
 =================
