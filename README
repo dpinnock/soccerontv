@@ -1,3 +1,36 @@
-Soccer On TV (http://www.sotlive.com, RIP) web app.
+Rest In Peace: Soccer On TV (http://www.sotlive.com)
 
-Putting this up for historical purposes only. The code is not very pretty (in my opinion).
+Putting this up for historical purposes only. The code is not very pretty but the app worked fine in production for over a year.
+
+Brief technical explanation of technologies used
+================================================
+This was my first Python web application. This was also my first experience with MongoDB. MongoDB was not the right database engine to use for a web app of this type, since the data is very structured. A traditional RDBMS database would have been a better choice. Still was a cool learning experience and MongoDB didn't actually hinder anything I was doing but it definitely wasn't the best choice. Live and learn...
+
+The JavaScript code I wrote for this is a bit messy. I just cranked it out and never changed anything after it worked. It works though...
+
+The jinja2 templates also are a bit of a mess, things could have been done differently.
+
+Dependencies:
+
+Server / Database
+=================
+- Apache httpd server and mod_wsgi
+- MongoDB
+
+Python
+======
+- Flask
+- pytz
+- jinja2
+- MongoKit
+- shortuuid
+
+JavaScript
+==========
+- Bootstrap plugins
+- jQuery
+- jQuery MultiSelect plugin
+
+CSS
+===
+- Bootstrap
