@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header page-header-padding">
+            <h1>About</h1>
+        </div>
+        <div class="row">
+            <div class="span16">
+                <h3>Purpose...</h3>
+                <p>Soccer On TV shows all <strong>LIVE</strong> soccer game television listings / stream listings nationally broadcast in the United States of America.</p>
+                <h3>Intentions...</h3>
+                <p>We do not have any affiliation with broadcast networks, sports teams, sports leagues, cable providers, etc... Therefore no station, sports entity, or sports league takes precedence over another. We simply list all the live games broadcast in the United States of America. No link spam, no popups, no adds, no BS. Just an easy to read television schedule for soccer games.</p>
+                <h3>About the creator...</h3>
+                <p>This website is run by one guy who does this for free in his spare time. Before this site was created he had to check five or six different hard to navigate television network websites to figure out which games were being broadcast on any given day. There was no easy place to determine this information before so now he is providing it for you!</p>
+                <h3>Want to know more?</h3>
+                <p>We love hearing from our users. <a href="{{ url_for('frontend.serve', page='contact') }}">Contact</a> us or find us on twitter: <a href="http://www.twitter.com/sotlive" target="_blank">@sotlive</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

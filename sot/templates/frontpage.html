@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% from "frontpage_macros.html" import gameDisplay, filter %}
+{% block styles %}
+    <link href="{{ url_for('static', filename='css/multi-select-plugin-0.0.2.css') }}" rel="stylesheet">
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='javascripts/sot.ajax-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.admin-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-modal-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/jquery.multi-select-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot_frontpage-0.0.4.js') }}"></script>
+{% endblock %}
+{% block content %}
+    <div class="container">
+	<div class="row page-header-padding">
+            <div class="span8">
+                <h1 class="page-header">Next 5 Days...</h1>
+                <ul name="activelistingtype" id="activelistingtype" class="pills">
+                
+                    {% if activeListingType == "cable" %}
+                        <li name="cable" id="cable" class="active"><a href="{{ url_for('frontend.frontpage') }}">Live TV</a></li>
+                    {% else %}
+                        <li name="cable" id="cable"><a href="{{ url_for('frontend.frontpage') }}">Live TV</a></li>
+                    {% endif %}
+                    
+                    {% if activeListingType == "stream" %}
+                        <li name="stream" id="stream" class="active"><a href="{{ url_for('frontend.listing', listingType='stream') }}">Live Online</a></li>
+                    {% else %}
+                        <li name="stream" id="stream"><a href="{{ url_for('frontend.listing', listingType='stream') }}">Live Online</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="span8">
+                <ul class="tabs">
+                    <li name="advancedfilter" id="advancedfilter" class="dropdown">
+                        <a name="advancedfilterlink" id="advancedfilterlink" href="#" class="dropdown-toggle">Advanced Filter</a>
+                        <div class="dropdown-menu" style="width: 600px;">
+                            <div class="row">
+                                <div class="span3">
+                                    <input type="radio" checked name="optionsRadios" id="in" value="$in" style="margin-left: 10px; margin-top: 15px;" /><span style="margin-left: 10px; font-weight: bold; margin-top: 15px; color: #000;">Show selected</span>
+                                    <br/>
+                                    <input type="radio" name="optionsRadios" id="nin" value="$nin" style="margin-left: 10px"/><span style="margin-left: 10px; font-weight: bold; margin-top: 15px; color: #000;">Exclude selected</span>
+                                </div>
+                                <div class="span7">
+                                    <h4 id="filterexplanation" name="filterexplanation" style="margin-left: 10px; margin-top: 5px; color: #000;">You will show only the selected items</h4>
+                                    <p name="unappliedfilterwarning" id="unappliedfilterwarning" style="margin-left: 10px; font-weight: bold; color: #F89406; display:none;">You have unapplied filter changes, press <span class="label success">Apply</span> or <span class="label">Reset</span></p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class='optgroup' style="margin-left: 45px;">
+                                <select multiple='multiple' class='multiselect' id='optgroup'>
+                                    <optgroup label="Stations">
+                                        {{ filter(stationList, "station-") }}
+                                    </optgroup>
+                                    <optgroup label="Competitions">
+                                        {{ filter(leagueList, "league-") }}
+                                    </optgroup>
+                                    <optgroup label='Teams'>
+                                        {{ filter(teamList, "team-") }}
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <div class="span3">
+                                    <button name="applyfilter" id= "applyfilter" class="btn medium success" style="margin-left: 10px; margin-bottom: 5px;">Apply</button>
+                                    <button name="resetfilter" id = "resetfilter" class="btn medium">Reset</button>
+                                </div>
+                                <div class="span7">
+                                    <p>Stations / Leagues / Teams currently listed on the frontpage appear in the 'Filterable Items' list.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li name="timezonefilter" id="timezonefilter" class="dropdown">
+                        <a href="#" class="dropdown-toggle">Timezone: <span style="font-weight: bold; color: #000;">ET</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="timezone"><span class="active-timezone">ET *</span></a></li>
+                            <li><a href="#" class="timezone"><span>CT</span></a></li>
+                            <li><a href="#" class="timezone"><span>MT</span></a></li>
+                            <li><a href="#" class="timezone"><span>PT</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span16">
+            {% for x in range(5) %}
+                <h3>{{ fpDateRange[x].strftime("%A") }} <small class="day-color">{{ fpDateRange[x].strftime("%B %d, %Y") }}</small></h3>
+                {{ gameDisplay(gameData[x], x) }}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="message" class="modal hide fade">
+        <div class="modal-header">
+            <a href="#" class="close">&times;</a>
+            <h3 id="messagetext"></h3>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn ok">OK</a>
+        </div>
+    </div>
+{% endblock %}

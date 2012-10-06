@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row page-header-padding">
+            <div class="span13">
+                <h1 class="page-header">Admin <span class="listing-type">{{ entryType }}</span></h1>
+            </div>
+            <div class="span3">
+                <ul class="tabs">
+                    <li>
+                        <a id="gametab" href="{{ url_for('admin.serve') }}">Game</a>
+                    </li>
+                    <li>
+                        <a id="notetab" href="{{ url_for('admin.serve', page='sot_admin_notes') }}">Notes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% block admincontent %}{% endblock %}
+    </div>
+    <div id="message" class="modal hide fade">
+        <div class="modal-header">
+            <a href="#" class="close">&times;</a>
+            <h3 id="messagetext"></h3>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn ok">OK</a>
+        </div>
+    </div>
+{% endblock %}

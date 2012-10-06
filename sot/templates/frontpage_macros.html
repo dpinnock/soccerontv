@@ -1,0 +1,55 @@
+﻿{# --------------------------------------------------------- #}
+{# Build filterable options start #}
+{%- macro filter(data, optionType) -%}
+    {% for x in data %}
+        <option class="sot-filter-option" value={{ optionType ~ x|replace(" ", "")|lower() }}>{{ x }}</option>
+    {% endfor %}
+{%- endmacro -%}
+{# Build filterable options end #}
+{# --------------------------------------------------------- #}
+
+{# --------------------------------------------------------- #}
+{# Game display start #}
+{%- macro gameDisplay(data, x) -%}
+    {% if not data %}
+        <h5 class="no-games" style="margin-bottom: 35px;">No live games today...</h5>
+    {% else %}
+        <table id="{{x}}" class="zebra-striped" style="border:none;">
+            <thead>
+                <tr>
+                    <th class="th-games">Time</th>
+                    <th class="th-games">Station</th>
+                    <th class="th-games">Competition</th>
+                    <th class="th-games">Match</th>
+                    <th class="th-games"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in data %}
+                <tr>
+                    <td class="td-games time">{{ x["gametime"].strftime("%I:%M %p") }} {{ x["timezone"] }}</td>
+                    <td class="td-games">{{ x["station"] }}</td>
+                    <td class="td-games">{{ x["league"] }}</td>
+                    <td class="td-games">{{ x["hometeam"] }} vs. {{ x["awayteam"] }}</td>
+                    <td class="td-games">
+                        {% if x["matchpreview"] != "" %}
+                            <a href="{{ x['matchpreview'] }}" target="_blank">Match Preview</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- This is definitely a hack... -->
+                <tr style="color: #FFF; cursor: default;">
+                    <td style="border-left: none; border-bottom:none; background-color: #FFF; cursor: default;">Manchester U</td><!--12-->
+                    <td style="border-left: none; border-bottom:none; background-color: #FFF; cursor: default;">Real Madrid PSG</td><!--15-->
+                    <td style="border-left: none; border-bottom:none; background-color: #FFF; cursor: default;">Barcelona Chelsea FC</td> <!--20-->
+                    <td style="border-left: none; border-bottom:none; background-color: #FFF; cursor: default;">Champions League Premier League La Liga USMNT</td><!--45-->
+                    <td style="border-left: none; border-bottom:none; background-color: #FFF; cursor: default;">AC Milan CSKA</td><!--13-->
+                </tr>
+                <!-- End the hack -->
+            </tbody>
+        </table>
+    {% endif %}
+{%- endmacro -%}
+{# Game display end #}
+{# --------------------------------------------------------- #}

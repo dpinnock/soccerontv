@@ -1,0 +1,44 @@
+{# --------------------------------------------------------- #}
+{# Menu start #}
+{%- macro menu() -%}
+    <div id="sottop" name="sottop" class="topbar">
+        <div class="fill">
+            <div class="container fixed">
+                <h3 style="margin-top: 3px;"><a href="{{ url_for('frontend.frontpage') }}">Soccer On TV</a></h3>
+                <ul class="nav secondary-nav">
+                    <li><a href="http://www.facebook.com/pages/Sot-Live/228790640514575" target="_blank"><img src="../static/images/facebook.png" alt="Facebook" title="Facebook"></img></a></li>
+                </ul>
+                <ul class="nav secondary-nav">
+                    <li><a href="http://www.twitter.com/sotlive" target="_blank"><img src="../static/images/twitter.png" alt="Twitter" title="Twitter"></img></a></li>
+                </ul>
+                <ul class="nav secondary-nav">
+                    <li><a href="{{ url_for('frontend.serve', page='faq') }}">FAQ</a></li>
+                </ul>
+                <ul class="nav secondary-nav">
+                    <li><a href="{{ url_for('frontend.serve', page='about') }}">About</a></li>
+                </ul>
+                <ul class="nav secondary-nav">
+                    <li><a href="http://blog.sotlive.com" target="_blank">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{%- endmacro -%}
+{# Menu end #}
+{# --------------------------------------------------------- #}
+
+{# --------------------------------------------------------- #}
+{# Footer start #}
+{%- macro footer() -%}
+    <div class="container">
+        <div class="row">
+            <div class="span16">
+                <footer class = "sot-footer">
+                    <p>&copy; 2011, 2012 Soccer On TV - All Rights Reserved | <a href="{{ url_for('frontend.frontpage') }}">Home</a> | <a href="http://blog.sotlive.com" target="_blank">Blog</a> | <a href="{{ url_for('frontend.serve', page='about') }}">About</a> | <a href="{{ url_for('frontend.serve', page='faq') }}">FAQ</a> | <a href="{{ url_for('frontend.serve', page='disclaimer') }}">Disclaimer</a> | <a href="{{ url_for('frontend.serve', page='contact') }}">Contact Us</a> | <a href="http://www.twitter.com/sotlive" target="_blank">Follow on Twitter</a> | <a href="http://www.facebook.com/pages/Sot-Live/228790640514575" target="_blank">Facebook Page</a>
+                </footer>
+            </div>
+        </div>
+    </div>
+{%- endmacro -%}
+{# Footer end #}
+{# --------------------------------------------------------- #}

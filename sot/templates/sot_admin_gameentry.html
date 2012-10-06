@@ -1,0 +1,169 @@
+{% extends "admin_layout.html" %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-modal-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-twipsy-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-popover-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.jquery_plugins-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.ajax-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.admin-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot_admin_gameentry-0.0.3.js') }}"></script>
+{% endblock %}
+{% block admincontent %}
+    <div class="row">
+        <div class="span16">
+            <form id="gameform">
+                <fieldset>
+                    <div class="clearfix">
+                        <label>Game ID</label>
+                        <div class="input">
+                            <div class="inline-inputs">
+                                <input name="gameid" id="gameid" class="xlarge" size="30" type="text" disabled = "disabled" style="cursor: default;"/>
+                                <a href="#" id="cleargameid" name="cleargameid" class="btn danger">X</a>
+                                <p name="gameid_error" id="gameid_error" class="form-error" style="display: none;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Frontpage?</label>
+                        <div class="input">
+                            <div class="inline-inputs">
+                                <select name="frontpageflag" id="frontpageflag" class="small">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <span style="color: #404040; margin-left: 150px; margin-right:15px;">Listing Type</span>
+                                <select name="listingtype" id="listingtype" class="medium">
+                                    <option value="cable">Cable</option>
+                                    <option value="stream">Stream</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Date</label>
+                        <div class="input">
+                            <div class="inline-inputs">
+                                <select name="month" id="month" class="mini">
+                                    {% for x in range(12) %}
+                                        <option value="{{ x + 1}}">{{ x + 1}}</option>
+                                    {% endfor %}
+                                </select>
+                                <select name="day" id="day" class="mini">
+                                    {% for x in range(31) %}
+                                        <option value="{{ x + 1}}">{{ x + 1}}</option>
+                                    {% endfor %}
+                                </select>
+                                <select name="year" id="year" class="small">
+                                    <option value="2012">2012</option>
+                                </select>
+                                <span style="color: #404040; margin-left: 63px; margin-right:17px;">Time</span>
+                                <select name="hour" id="hour" class="mini">
+                                    {% for x in range(12) %}
+                                        <option value="{{ x + 1}}">{{ x + 1}}</option>
+                                    {% endfor %}
+                                </select>
+                                <select name="minute" id="minute" class="mini">
+                                    {% for x in range(56) if x % 5 == 0 %}
+                                        <option value="{{ x }}">{{ x }}</option>
+                                    {% endfor %}
+                                </select>
+                                <select name="ampm" id="ampm" class="mini">
+                                    <option value="AM">A.M.</option>
+                                    <option value="PM">P.M.</option>
+                                </select>
+                            </div>
+                            <span class="help-block"><strong>Month / Day / Year</strong><strong style="margin-left: 240px">Hour / Minute / A.M. or P.M.</strong></span>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Station</label>
+                        <div class="input">
+                            <input name="station" id="station" class="xlarge" size="30" type="text"/>
+                            <p name="station_error" id="station_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Competition</label>
+                        <div class="input">
+                            <input name="league" id="league" class="xlarge" size="30" type="text"/>
+                            <p name="league_error" id="league_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Home Team</label>
+                        <div class="input">
+                            <input name="hometeam" id="hometeam" class="xlarge" size="30" type="text"/>
+                            <p name="hometeam_error" id="hometeam_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Away Team</label>
+                        <div class="input">
+                            <input name="awayteam" id="awayteam" class="xlarge" size="30" type="text"/>
+                            <p name="awayteam_error" id="awayteam_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Match Preview</label>
+                        <div class="input">
+                            <input name="matchpreview" id="matchpreview" class="xlarge" size="30" type="text"/>
+                            <span class="help-block"><strong>You MUST include http:// as part of the url</strong></span>
+                            <p name="matchpreview_error" id="matchpreview_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Comments</label>
+                        <div class="input">
+                            <textarea class="xxlarge" id="gamenote" name="gamenote" rows="3"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="well" style="padding: 14px 19px;">
+                    <input type="submit" name="gamesubmit" id="gamesubmit" class="btn" value="Save Game">
+                    <input type="submit" name="gameclear" id="gameclear" class="btn" value="Clear Game">
+                    <input type="submit" name="gamereport" id="gamereport" class="btn success" value="Listing Report">
+                    <input type="submit" name="gamedelete" id="gamedelete" class="btn danger" value="Delete Game">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span16"> 
+            <ul name="activelistingtype" id="activelistingtype" class="pills">
+                <li name="cable" id="cable" class="active"><a name="cablelink" id="cablelink" href="#">Live TV</a></li>
+                <li name="stream" id="stream"><a name="streamlink" id="streamlink" href="#">Live Stream</a></li>
+            </ul>
+            <table id="gamelistview">
+                <thead>
+                    <tr>
+                        <th>Date / Time</th>
+                        <th>Station</th>
+                        <th>Competition</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>Move Details</th>
+                        <th>Comments</th>
+                        <th>Frontpage?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="reportpopup" class="modal hide fade">
+        <div class="modal-header">
+            <a href="#" class="close">&times;</a>
+            <h3 id="reportheader">Today's Listing Report</h3>
+        </div>
+        <div class="modal-body">
+            <h4>Cable</h4>
+            <p id="cablereporttext"></p>
+            <h4>Stream</h4>
+            <p id="streamreporttext"></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn ok">OK</a>
+        </div>
+    </div>
+{% endblock %}

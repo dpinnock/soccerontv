@@ -1,0 +1,74 @@
+﻿{% extends "admin_layout.html" %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-modal-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-twipsy-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/bootstrap-popover-0.0.2.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.jquery_plugins-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.ajax-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot.admin-0.0.3.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/sot_admin_notes-0.0.3.js') }}"></script>
+{% endblock %}
+{% block admincontent %}
+    <div class="row">
+        <div class="span16">
+            <form id="noteform">
+                <fieldset>
+                    <div class="clearfix">
+                        <label>Note ID</label>
+                        <div class="input">
+                            <div class="inline-inputs">
+                                <input name="noteid" id="noteid" class="xlarge" size="30" type="text" disabled = "disabled" style="cursor: default;"/>
+                                <a href="#" id="noteclearid" name="noteclearid" class="btn danger">X</a> <!-- make sure to clear date too!-->
+                                <p name="noteid_error" id="noteid_error" class="form-error" style="display: none;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Date</label>
+                        <div class="input">
+                            <div class="inline-inputs">
+                                <input name="notedate" id="notedate" class="xlarge" size="30" type="text" disabled = "disabled" style="cursor: default;"/>
+                                <p name="notedate_error" id="notedate_error" class="form-error" style="display: none;"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Subject</label>
+                        <div class="input">
+                            <input name="notesubject" id="notesubject" class="xlarge" size="30" type="text"/>
+                            <p name="notesubject_error" id="notesubject_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>Body</label>
+                        <div class="input">
+                            <textarea class="xxlarge" id="notebody" name="notebody" rows="8"></textarea>
+                            <p name="notebody_error" id="notebody_error" class="form-error" style="display: none;"></p>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="well" style="padding: 14px 19px;">
+                    <input type="submit" name="notesubmit" id="notesubmit" class="btn" value="Save Note">
+                    <input type="submit" name="noteclear" id="noteclear" class="btn" value="Clear Note">
+                    <input type="submit" name="notedelete" id="notedelete" class="btn danger" value="Delete Note">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span16">                
+            <table id="notelistview">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Body</th>
+                        <th>Move Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
