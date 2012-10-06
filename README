@@ -35,7 +35,7 @@ Free data
 =========
 - dump.json is all the game data entries we made while the web app was up, maybe someone can find it useful or interesting.
 - Date values are stored as the number of milliseconds since the Unix epoch (Jan 1, 1970) as a 64-bit integer. You will have to convert each date entry to a human readable date yourself.
-- Even though all dates are stored without timezone information, all dates were entered against ET time zone. IE: Don't explicitly convert the date to the ET timezone, it will be wrong.
+- Even though all dates are stored without time zone information, all dates were entered against ET time zone. IE: Don't explicitly convert the date to the ET time zone, it will be wrong.
 - Please note there are mistakes in some entries, so it's not 100% accurate or reliable.
 
 
